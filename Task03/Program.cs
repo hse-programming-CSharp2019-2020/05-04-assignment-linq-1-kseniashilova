@@ -57,15 +57,15 @@ namespace Task03
     {
         static void Main(string[] args)
         {
-            //Console.InputEncoding = Encoding.UTF8;
-            //Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;
 
             int N = 0;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
             {
                 N = int.Parse(Console.ReadLine());
-
+                if (N <= 0) throw new FormatException();
                 for (int i = 0; i < N; i++)
                 {
                     string[] str = Console.ReadLine()
