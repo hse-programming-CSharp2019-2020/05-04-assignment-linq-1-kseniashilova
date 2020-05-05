@@ -100,6 +100,10 @@ namespace Task03
             {
                 Console.WriteLine("FormatException");
             }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
         }
 
         // выведите элементы коллекции на экран с помощью кода, состоящего из одной линии (должна быть одна точка с запятой)
