@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 /* В задаче не использовать циклы for, while. Все действия по обработке данных выполнять с использованием LINQ
  * 
@@ -44,20 +45,23 @@ namespace Task02
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
                 arr =
-                    Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).
-                    Select(x => int.Parse(x)).ToArray();
+                    Array.ConvertAll(
+                    Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
+                    x => int.Parse(x));
 
-                var filteredCollection = arr.TakeWhile(x => x == 0);
-
+                var filteredCollection = (arr.TakeWhile(x => x != 0)).ToArray();
+                double[]filteredCollection1 = Array.ConvertAll(filteredCollection, x => (double)x);
 
                 // использовать статическую форму вызова метода подсчета среднего
-                double averageUsingStaticForm = filteredCollection.Aggregate((x, y) => (x + y) / 2);
+                double averageUsingStaticForm = filteredCollection1.Aggregate((x, y) => (x*x+y*y)/2.0);
+                Console.WriteLine($"{averageUsingStaticForm:f3}");
                 // использовать объектную форму вызова метода подсчета среднего
-                double averageUsingInstanceForm = filteredCollection.Average();
+                double averageUsingInstanceForm = filteredCollection.ToList().ConvertAll(x => x*x).Average();
+                Console.WriteLine($"{averageUsingInstanceForm:f3}");
 
 
                 // вывести элементы коллекции в одну строку
-                filteredCollection.ToList().ForEach(x => Console.Write(x + ' '));
+                filteredCollection.ToList().ForEach(x => Console.Write(x + " "));
             }
             catch(Exception e)
             {
