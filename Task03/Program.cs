@@ -87,7 +87,7 @@ namespace Task03
 //* 3.Если совпадают и фамилия, и имя производителя, то сортировать по году выпуска в порядке возрастания.
             var computerInfoQuery = from comp in computerInfoList
                                     orderby comp.Owner descending
-                                    orderby comp.ComputerManufacturer ascending
+                                    orderby comp.ComputerManufacturer.ToString() ascending
                                     orderby comp.year ascending
                                     select comp;
 
@@ -97,7 +97,7 @@ namespace Task03
 
             // выполните сортировку одним выражением
             var computerInfoMethods = computerInfoList.
-                OrderByDescending(x=>x.Owner).OrderBy(x=>x.ComputerManufacturer).OrderBy(x=>x.year);
+                OrderByDescending(x=>x.Owner).OrderBy(x=>x.ComputerManufacturer.ToString()).OrderBy(x=>x.year);
 
             PrintCollectionInOneLine(computerInfoMethods);
 
