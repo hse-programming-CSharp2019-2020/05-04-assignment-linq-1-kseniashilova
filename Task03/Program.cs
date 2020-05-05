@@ -74,22 +74,7 @@ namespace Task03
 
                     computerInfoList.Add(new ComputerInfo(str[0], int.Parse(str[2]), int.Parse(str[1])));
                 }
-            }
-            catch(ArgumentException)
-            {
-                Console.WriteLine("ArgumentException");
-            }
-            catch (FormatException )
-            {
-                Console.WriteLine("FormatException");
-            }
-            // выполните сортировку одним выражением
-
-//            1.Первоочередно объекты ComputerInfo сортируются по фамилии владельца в убывающем порядке
-//* 2.Для объектов, у которых фамилии владельцев сопадают, 
-// *сортировка идет по названию компании производителя(НЕ по коду) в возрастающем порядке.
-
-//* 3.Если совпадают и фамилия, и имя производителя, то сортировать по году выпуска в порядке возрастания.
+            
             var computerInfoQuery = from comp in computerInfoList
                                     orderby comp.year descending
                                     orderby comp.ComputerManufacturer.ToString() ascending
@@ -106,7 +91,15 @@ namespace Task03
                 .OrderBy(x => x.ComputerManufacturer.ToString()).OrderByDescending(x => x.Owner);
 
             PrintCollectionInOneLine(computerInfoMethods);
-
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
         }
 
         // выведите элементы коллекции на экран с помощью кода, состоящего из одной линии (должна быть одна точка с запятой)
