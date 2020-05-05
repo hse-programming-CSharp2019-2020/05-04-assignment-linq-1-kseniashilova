@@ -45,19 +45,26 @@ namespace Task01
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
-            }
+                arr = Array.ConvertAll(
+                    Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
+                    x => int.Parse(x));
+
+
+                // использовать синтаксис запросов!
+                IEnumerable<int> arrQuery = from int el in arr
+                                            where ((el < 0) || (el % 2 == 0))
+                                            select el;
+
+                // использовать синтаксис методов!
+                IEnumerable<int> arrMethod = arr.Where(x => x % 2 == 0 || x < 0);
             
-            // использовать синтаксис запросов!
-            IEnumerable<int> arrQuery = from 
-
-            // использовать синтаксис методов!
-            IEnumerable<int> arrMethod = arr.
-
-            try
-            {
                 PrintEnumerableCollection<int>(arrQuery, ":");
+                Console.WriteLine();
                 PrintEnumerableCollection<int>(arrMethod, "*");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
 
@@ -65,8 +72,9 @@ namespace Task01
         // P.S. Есть два способа, оставьте тот, в котором применяется LINQ...
         public static void PrintEnumerableCollection<T>(IEnumerable<T> collection, string separator)
         {
-           
-           
+            Console.Write(collection.First());
+            collection.Skip(1).ToList().ForEach(x => Console.Write(separator + x));
+            
         }
     }
 }
