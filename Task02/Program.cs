@@ -59,7 +59,8 @@ namespace Task02
                     (filteredCollection1.Aggregate((x, y) => (x*x+y*y)))/filteredCollection.Length;
                 Console.WriteLine($"{averageUsingStaticForm:f3}".Replace('.', ','));
                 // использовать объектную форму вызова метода подсчета среднего
-                double averageUsingInstanceForm = filteredCollection.ToList().ConvertAll(x => x*x).Average();
+                double averageUsingInstanceForm = 
+                    filteredCollection.ToList().ConvertAll(x => x*x).Sum()/filteredCollection.Length;
                 Console.WriteLine($"{averageUsingInstanceForm:f3}".Replace('.', ','));
 
 
