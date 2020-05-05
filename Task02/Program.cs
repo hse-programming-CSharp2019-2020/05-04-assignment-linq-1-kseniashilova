@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
@@ -54,7 +55,8 @@ namespace Task02
 
                 // использовать статическую форму вызова метода подсчета среднего
                 
-                double averageUsingStaticForm = filteredCollection1.Aggregate((x, y) => (x*x+y*y)/ filteredCollection1.Length);
+                double averageUsingStaticForm = 
+                    (filteredCollection1.Aggregate((x, y) => (x*x+y*y)))/filteredCollection.Length;
                 Console.WriteLine($"{averageUsingStaticForm:f3}".Replace('.', ','));
                 // использовать объектную форму вызова метода подсчета среднего
                 double averageUsingInstanceForm = filteredCollection.ToList().ConvertAll(x => x*x).Average();
