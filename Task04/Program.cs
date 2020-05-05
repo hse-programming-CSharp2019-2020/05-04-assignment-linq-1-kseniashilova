@@ -41,43 +41,45 @@ namespace Task04
         public static void RunTesk04()
         {
             int[] arr;
-            try
+            checked
             {
-                // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = Array.ConvertAll(
-                        Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
-                        x => int.Parse(x));
-            }
-            catch (ArgumentNullException)
-            {
-                Console.WriteLine("ArgumentNullException");
-                return;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("FormatException");
-                return;
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("OverflowException");
-                return;
-            }
-            catch (ArgumentException)
-            {
-                Console.WriteLine("ArgumentException");
-                return;
-            }
+                try
+                {
+                    // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
+                    arr = Array.ConvertAll(
+                            Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
+                            x => int.Parse(x));
+                }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine("ArgumentNullException");
+                    return;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("FormatException");
+                    return;
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("OverflowException");
+                    return;
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("ArgumentException");
+                    return;
+                }
 
-            // использовать синтаксис методов! SQL-подобные запросы не писать!
+                // использовать синтаксис методов! SQL-подобные запросы не писать!
 
-            int arrAggregate = arr.Select((x, ind) => (int)Math.Pow(-1, ind) * x).Aggregate(5, (x, y) => x + y);
+                int arrAggregate = arr.Select((x, ind) => (int)Math.Pow(-1, ind) * x).Aggregate(5, (x, y) => x + y);
 
                 int arrMyAggregate = MyClass.MyAggregate(arr);
 
                 Console.WriteLine(arrAggregate);
                 Console.WriteLine(arrMyAggregate);
-           
+            }
         }
     }
 
