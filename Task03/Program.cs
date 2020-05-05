@@ -70,27 +70,27 @@ namespace Task03
                 {
                     string[] str = Console.ReadLine()
                         .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    
+
 
                     computerInfoList.Add(new ComputerInfo(str[0], int.Parse(str[2]), int.Parse(str[1])));
                 }
-            
-            var computerInfoQuery = from comp in computerInfoList
-                                    orderby comp.year descending
-                                    orderby comp.ComputerManufacturer.ToString() ascending
-                                    orderby comp.Owner descending
-                                    select comp;
 
-            PrintCollectionInOneLine(computerInfoQuery);
+                var computerInfoQuery = from comp in computerInfoList
+                                        orderby comp.year descending
+                                        orderby comp.ComputerManufacturer.ToString() ascending
+                                        orderby comp.Owner descending
+                                        select comp;
 
-            Console.WriteLine();
+                PrintCollectionInOneLine(computerInfoQuery);
 
-            // выполните сортировку одним выражением
-            var computerInfoMethods = computerInfoList.
-                OrderByDescending(x => x.year)
-                .OrderBy(x => x.ComputerManufacturer.ToString()).OrderByDescending(x => x.Owner);
+                Console.WriteLine();
 
-            PrintCollectionInOneLine(computerInfoMethods);
+                // выполните сортировку одним выражением
+                var computerInfoMethods = computerInfoList.
+                    OrderByDescending(x => x.year)
+                    .OrderBy(x => x.ComputerManufacturer.ToString()).OrderByDescending(x => x.Owner);
+
+                PrintCollectionInOneLine(computerInfoMethods);
             }
             catch (ArgumentException)
             {
@@ -128,7 +128,7 @@ namespace Task03
         public ComputerInfo(string owner, int val, int year)
         {
             Owner = owner;
-            if (val<0 || val>3) throw new ArgumentException();
+            if (val < 0 || val > 3) throw new ArgumentException();
             ComputerManufacturer = (Manufacturer)Enum.GetValues(typeof(Manufacturer)).GetValue(val);
             if (year < 1970 || year > 2020) throw new ArgumentException();
             this.year = year;

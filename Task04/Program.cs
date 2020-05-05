@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 /*
  * На вход подается строка, состоящая из целых чисел типа int, разделенных одним или несколькими пробелами.
@@ -43,12 +44,34 @@ namespace Task04
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = Array.ConvertAll(
+                        Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
+                        x => int.Parse(x));
             }
-           
-                // использовать синтаксис методов! SQL-подобные запросы не писать!
-               
-                int arrAggregate = arr.
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("ArgumentNullException");
+                return;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+                return;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+                return;
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+                return;
+            }
+
+            // использовать синтаксис методов! SQL-подобные запросы не писать!
+
+            int arrAggregate = arr.Select((x, ind) => (int)Math.Pow(-1, ind) * x).Aggregate(5, (x, y) => x + y);
 
                 int arrMyAggregate = MyClass.MyAggregate(arr);
 
@@ -60,9 +83,9 @@ namespace Task04
 
     static class MyClass
     {
-        public static int MyAggregate()
+        public static int MyAggregate(int[] coll)
         {
-            
+            return coll.Select((x, ind) => (int)Math.Pow(-1, ind) * x).Aggregate(5, (x, y) => x + y);
         }
     }
 }
