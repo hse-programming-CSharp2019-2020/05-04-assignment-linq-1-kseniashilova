@@ -57,8 +57,8 @@ namespace Task03
     {
         static void Main(string[] args)
         {
-            Console.InputEncoding = Encoding.UTF8;
-            Console.OutputEncoding = Encoding.UTF8;
+            //Console.InputEncoding = Encoding.UTF8;
+            //Console.OutputEncoding = Encoding.UTF8;
 
             int N = 0;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
