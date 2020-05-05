@@ -63,41 +63,68 @@ namespace Task03
 
                 for (int i = 0; i < N; i++)
                 {
+                    string[] str = Console.ReadLine()
+                        .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     
-                }
-            }          
 
+                    computerInfoList.Add(new ComputerInfo(str[0], int.Parse(str[2]), int.Parse(str[1])));
+                }
+            }
+            catch(ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (FormatException )
+            {
+                Console.WriteLine("FormatException");
+            }
             // выполните сортировку одним выражением
-            var computerInfoQuery = from 
+            var computerInfoQuery = from comp in computerInfoList
+                                    orderby comp.Owner
+                                    
+                                    select comp;
 
             PrintCollectionInOneLine(computerInfoQuery);
 
             Console.WriteLine();
 
             // выполните сортировку одним выражением
-            var computerInfoMethods = computerInfoList.
+            var computerInfoMethods = computerInfoList.OrderBy(x=>x.Owner);
 
             PrintCollectionInOneLine(computerInfoMethods);
-            
+
         }
 
         // выведите элементы коллекции на экран с помощью кода, состоящего из одной линии (должна быть одна точка с запятой)
         public static void PrintCollectionInOneLine(IEnumerable<ComputerInfo> collection)
         {
+            collection.ToList().ForEach(x => Console.WriteLine(x));
         }
     }
 
     enum Manufacturer
     {
         Dell = 0,
-        Asus =1,
-        Apple=2,
+        Asus = 1,
+        Apple = 2,
         Microsoft = 3
     }
     class ComputerInfo
     {
         public string Owner { get; set; }
         public Manufacturer ComputerManufacturer { get; set; }
-        
+        public int year;
+        public ComputerInfo(string owner, int val, int year)
+        {
+            Owner = owner;
+            if (val<0 || val>3) throw new ArgumentException();
+            ComputerManufacturer = (Manufacturer)Enum.GetValues(typeof(Manufacturer)).GetValue(val);
+            if (year < 1970 || year > 2020) throw new ArgumentException();
+            this.year = year;
+        }
+        public override string ToString()
+        {
+            return $"{Owner}: {ComputerManufacturer} [{year}]";
+        }
     }
 }
