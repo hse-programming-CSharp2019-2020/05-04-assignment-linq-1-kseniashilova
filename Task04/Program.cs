@@ -72,13 +72,31 @@ namespace Task04
                 }
 
                 // использовать синтаксис методов! SQL-подобные запросы не писать!
+                try
+                {
+                    int arrAggregate = arr.Select((x, ind) => (int)Math.Pow(-1, ind) * x).Aggregate(5, (x, y) => x + y);
 
-                int arrAggregate = arr.Select((x, ind) => (int)Math.Pow(-1, ind) * x).Aggregate(5, (x, y) => x + y);
+                    int arrMyAggregate = MyClass.MyAggregate(arr);
 
-                int arrMyAggregate = MyClass.MyAggregate(arr);
-
-                Console.WriteLine(arrAggregate);
-                Console.WriteLine(arrMyAggregate);
+                    Console.WriteLine(arrAggregate);
+                    Console.WriteLine(arrMyAggregate);
+                }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine("ArgumentNullException");
+                    return;
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("OverflowException");
+                    return;
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("ArgumentException");
+                    return;
+                }
+                
             }
         }
     }
