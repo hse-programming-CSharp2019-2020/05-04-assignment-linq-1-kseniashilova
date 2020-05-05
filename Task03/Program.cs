@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -54,18 +55,17 @@ namespace Task03
     {
         static void Main(string[] args)
         {
-            int N
+            int N = 0;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
             {
-                N = 
-                
+                N = int.Parse(Console.ReadLine());
+
                 for (int i = 0; i < N; i++)
                 {
                     
                 }
-            }
-           
+            }          
 
             // выполните сортировку одним выражением
             var computerInfoQuery = from 
@@ -87,7 +87,14 @@ namespace Task03
         }
     }
 
+    enum Manufacturer
+    {
+        Dell = 0,
+        Asus =1,
+        Apple=2,
+        Microsoft = 3;
 
+    }
     class ComputerInfo
     {
         public string Owner { get; set; }
