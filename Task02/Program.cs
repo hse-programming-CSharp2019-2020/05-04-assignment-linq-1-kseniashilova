@@ -44,28 +44,31 @@ namespace Task02
             int[] arr;
             try
             {
-                // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr =
-                    Array.ConvertAll(
-                    Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
-                    x => int.Parse(x));
+                checked
+                {
+                    // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
+                    arr =
+                        Array.ConvertAll(
+                        Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
+                        x => int.Parse(x));
 
-                var filteredCollection = (arr.TakeWhile(x => x != 0)).Select(x => x * x);
+                    var filteredCollection = (arr.TakeWhile(x => x != 0)).Select(x => x * x);
 
-                // использовать статическую форму вызова метода подсчета среднего
-                
-                double averageUsingStaticForm = Enumerable.Average(filteredCollection);
-                Console.WriteLine($"{averageUsingStaticForm:f3}".Replace('.', ','));
-                // использовать объектную форму вызова метода подсчета среднего
-                double averageUsingInstanceForm = 
-                   filteredCollection.Average();
-                Console.WriteLine($"{averageUsingInstanceForm:f3}".Replace('.', ','));
+                    // использовать статическую форму вызова метода подсчета среднего
+
+                    double averageUsingStaticForm = Enumerable.Average(filteredCollection);
+                    Console.WriteLine($"{averageUsingStaticForm:f3}".Replace('.', ','));
+                    // использовать объектную форму вызова метода подсчета среднего
+                    double averageUsingInstanceForm =
+                       filteredCollection.Average();
+                    Console.WriteLine($"{averageUsingInstanceForm:f3}".Replace('.', ','));
 
 
-                // вывести элементы коллекции в одну строку
-                Console.WriteLine(arr.TakeWhile(n => n != 0)
-                    .Select(n => n.ToString())
-                    .Aggregate((n, m) => n + " " + m));
+                    // вывести элементы коллекции в одну строку
+                    Console.WriteLine(arr.TakeWhile(n => n != 0)
+                        .Select(n => n.ToString())
+                        .Aggregate((n, m) => n + " " + m));
+                }
             }
             catch (OverflowException)
             {
