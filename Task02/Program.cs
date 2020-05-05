@@ -67,9 +67,13 @@ namespace Task02
                     .Select(n => n.ToString())
                     .Aggregate((n, m) => n + " " + m));
             }
-            catch(Exception e)
+            catch (OverflowException)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("OverflowException");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
             }
 
         }

@@ -92,8 +92,7 @@ namespace Task03
         Dell = 0,
         Asus =1,
         Apple=2,
-        Microsoft = 3;
-
+        Microsoft = 3
     }
     class ComputerInfo
     {
