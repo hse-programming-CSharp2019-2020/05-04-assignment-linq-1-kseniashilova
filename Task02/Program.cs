@@ -53,7 +53,8 @@ namespace Task02
                 double[]filteredCollection1 = Array.ConvertAll(filteredCollection, x => (double)x);
 
                 // использовать статическую форму вызова метода подсчета среднего
-                double averageUsingStaticForm = filteredCollection1.Aggregate((x, y) => (x*x+y*y)/2.0);
+                double 
+                double averageUsingStaticForm = filteredCollection1.Aggregate((x, y) => (x*x+y*y)/ filteredCollection1.Length);
                 Console.WriteLine($"{averageUsingStaticForm:f3}".Replace('.', ','));
                 // использовать объектную форму вызова метода подсчета среднего
                 double averageUsingInstanceForm = filteredCollection.ToList().ConvertAll(x => x*x).Average();
