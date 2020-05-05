@@ -79,9 +79,16 @@ namespace Task03
                 Console.WriteLine("FormatException");
             }
             // выполните сортировку одним выражением
+
+//            1.Первоочередно объекты ComputerInfo сортируются по фамилии владельца в убывающем порядке
+//* 2.Для объектов, у которых фамилии владельцев сопадают, 
+// *сортировка идет по названию компании производителя(НЕ по коду) в возрастающем порядке.
+
+//* 3.Если совпадают и фамилия, и имя производителя, то сортировать по году выпуска в порядке возрастания.
             var computerInfoQuery = from comp in computerInfoList
-                                    orderby comp.Owner
-                                    
+                                    orderby comp.Owner descending
+                                    orderby comp.ComputerManufacturer ascending
+                                    orderby comp.year ascending
                                     select comp;
 
             PrintCollectionInOneLine(computerInfoQuery);
@@ -89,7 +96,8 @@ namespace Task03
             Console.WriteLine();
 
             // выполните сортировку одним выражением
-            var computerInfoMethods = computerInfoList.OrderBy(x=>x.Owner);
+            var computerInfoMethods = computerInfoList.
+                OrderByDescending(x=>x.Owner).OrderBy(x=>x.ComputerManufacturer).OrderBy(x=>x.year);
 
             PrintCollectionInOneLine(computerInfoMethods);
 
